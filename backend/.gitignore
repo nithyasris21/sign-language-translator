@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+data/sequences/
+data/signs/
+data/raw/
+data/wlasl_samples.json
+tests/*.log
