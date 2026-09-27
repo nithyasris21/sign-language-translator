@@ -9,15 +9,24 @@ import numpy as np
 from config import (
     CONFIDENCE_THRESHOLD,
     FEATURE_SIZE,
+    ISLR_FPS,
+    ISLR_LABELS_PATH,
+    ISLR_MODEL_PATH,
+    ISLR_WINDOW_SECONDS,
     LABELS_PATH,
     MODEL_PATH,
     SEQUENCE_LENGTH,
+    SIGN_MODEL,
     WINDOW_SECONDS,
 )
 
 
 class SignRecognizer:
     """Loads the trained model once; each client gets its own frame buffer."""
+
+    kind = "lstm"
+    sequence_length = SEQUENCE_LENGTH
+    window_seconds = WINDOW_SECONDS
 
     def __init__(self):
         self._model = None
@@ -57,6 +66,65 @@ class SignRecognizer:
         return self._labels[idx], float(probs[idx]), scores
 
 
+# ISLR glosses are run together; show them as words
+ISLR_DISPLAY = {
+    "thankyou": "thank you", "callonphone": "call (phone)", "haveto": "have to",
+    "minemy": "mine", "hesheit": "he/she/it", "weus": "we", "frenchfries": "french fries",
+    "glasswindow": "window", "icecream": "ice cream", "TV": "tv",
+}
+
+
+class ISLRRecognizer:
+    """Pretrained Kaggle ASL Signs model (TFLite). Takes a variable-length
+    (frames, 543, 3) sequence of raw Holistic landmarks with NaN for missing
+    parts and returns 250 logits; it does its own normalisation."""
+
+    kind = "islr"
+    sequence_length = round(ISLR_FPS * ISLR_WINDOW_SECONDS)
+    window_seconds = ISLR_WINDOW_SECONDS
+
+    def __init__(self):
+        self._runner = None
+        self._labels: list[str] = []
+        self._lock = Lock()
+
+    @property
+    def ready(self) -> bool:
+        return ISLR_MODEL_PATH.exists() and ISLR_LABELS_PATH.exists()
+
+    @property
+    def labels(self) -> list[str]:
+        if not self._labels and self.ready:
+            index = json.loads(ISLR_LABELS_PATH.read_text())
+            self._labels = [ISLR_DISPLAY.get(g, g) for g, _ in sorted(index.items(), key=lambda kv: kv[1])]
+        return self._labels
+
+    def load(self):
+        if self._runner is not None:
+            return
+        with self._lock:
+            if self._runner is not None:
+                return
+            if not self.ready:
+                raise RuntimeError("ISLR model missing from data/models/islr.")
+            import tensorflow as tf  # imported lazily: TF startup is slow
+
+            interpreter = tf.lite.Interpreter(str(ISLR_MODEL_PATH))
+            self._runner = interpreter.get_signature_runner("serving_default")
+            _ = self.labels
+
+    def predict(self, window: np.ndarray) -> tuple[str, float, dict]:
+        self.load()
+        # one interpreter serves every connection; TFLite is not re-entrant
+        with self._lock:
+            logits = np.asarray(self._runner(inputs=window.astype(np.float32))["outputs"])
+        probs = np.exp(logits - logits.max())
+        probs /= probs.sum()
+        idx = int(np.argmax(probs))
+        scores = {label: float(p) for label, p in zip(self._labels, probs)}
+        return self._labels[idx], float(probs[idx]), scores
+
+
 class FrameBuffer:
     """Per-connection rolling window of timestamped landmark vectors.
 
@@ -69,8 +137,9 @@ class FrameBuffer:
 
     MIN_FRAMES = 5
 
-    def __init__(self, window_seconds: float = WINDOW_SECONDS):
+    def __init__(self, window_seconds: float = WINDOW_SECONDS, sequence_length: int = SEQUENCE_LENGTH):
         self.window = window_seconds
+        self.sequence_length = sequence_length
         self.frames: deque[tuple[float, np.ndarray]] = deque()
         self.last_emitted: str | None = None
         self._low_since: float | None = None
@@ -81,7 +150,7 @@ class FrameBuffer:
         if not self.frames:
             return 0
         span = self.frames[-1][0] - self.frames[0][0]
-        return min(SEQUENCE_LENGTH, round(SEQUENCE_LENGTH * span / self.window))
+        return min(self.sequence_length, round(self.sequence_length * span / self.window))
 
     def push(self, keypoints: np.ndarray, t: float | None = None) -> np.ndarray | None:
         t = time.monotonic() if t is None else t
@@ -92,7 +161,7 @@ class FrameBuffer:
         if len(self.frames) < self.MIN_FRAMES or t - self.frames[0][0] < self.window * 0.95:
             return None
         times = np.array([ft for ft, _ in self.frames])
-        targets = np.linspace(t - self.window, t, SEQUENCE_LENGTH)
+        targets = np.linspace(t - self.window, t, self.sequence_length)
         idx = np.clip(np.searchsorted(times, targets, side="right") - 1, 0, len(times) - 1)
         return np.array([self.frames[i][1] for i in idx], dtype=np.float32)
 
@@ -122,4 +191,4 @@ class FrameBuffer:
         return True
 
 
-recognizer = SignRecognizer()
+recognizer = ISLRRecognizer() if SIGN_MODEL == "islr" else SignRecognizer()

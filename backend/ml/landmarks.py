@@ -88,6 +88,25 @@ def extract_keypoints(results) -> np.ndarray:
     return np.concatenate([pose, lh_xyz.flatten(), rh_xyz.flatten()]).astype(np.float32)
 
 
+def extract_raw543(results) -> np.ndarray:
+    """All 543 Holistic landmarks as (543, 3) in the Kaggle ASL Signs layout:
+    face(468), left hand(21), pose(33), right hand(21), image-normalised,
+    NaN where a part was not detected. The pretrained ISLR model normalises
+    internally, so no body-frame transform here."""
+
+    def part(landmarks, n):
+        if landmarks is None:
+            return np.full((n, 3), np.nan, dtype=np.float32)
+        return np.array([[l.x, l.y, l.z] for l in landmarks.landmark[:n]], dtype=np.float32)
+
+    return np.concatenate([
+        part(results.face_landmarks, 468),
+        part(results.left_hand_landmarks, 21),
+        part(results.pose_landmarks, 33),
+        part(results.right_hand_landmarks, 21),
+    ])
+
+
 def has_hands(results) -> bool:
     return results.left_hand_landmarks is not None or results.right_hand_landmarks is not None
 

@@ -2,6 +2,7 @@
 
     python -m ml.fetch_wlasl --top 12
     python -m ml.fetch_wlasl --words hello thanks yes no
+    python -m ml.fetch_wlasl --refs-only --top 2000   # text -> sign clips only
 
 WLASL has 2000 glosses but only ~6 clips each (16 at best), so we take the
 glosses with the most clips rather than the most useful-sounding ones --
@@ -16,6 +17,7 @@ import argparse
 import collections
 import json
 import shutil
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
@@ -61,11 +63,29 @@ def download(sample, dest) -> bool:
         return False
 
 
+def fetch_refs(glosses, by_gloss):
+    """One reference clip per gloss straight into WORDS_DIR, no training data."""
+    WORDS_DIR.mkdir(parents=True, exist_ok=True)
+
+    def one(gloss):
+        # a dead link is common in WLASL, so fall through to the next clip
+        for s in by_gloss[gloss]:
+            if download(s, WORDS_DIR / f"{gloss}.mp4"):
+                return True
+        return False
+
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        ok = sum(pool.map(one, glosses))
+    print(f"\n{ok}/{len(glosses)} reference clips -> {WORDS_DIR}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=12, help="take the N glosses with most clips")
     ap.add_argument("--words", nargs="*", help="explicit gloss list instead of --top")
     ap.add_argument("--max-per-gloss", type=int, default=20)
+    ap.add_argument("--refs-only", action="store_true",
+                    help="only fetch one text -> sign reference clip per gloss")
     args = ap.parse_args()
 
     samples = load_metadata()
@@ -74,6 +94,10 @@ def main():
     for s in samples:
         if s["gloss"]["label"] in glosses:
             by_gloss[s["gloss"]["label"]].append(s)
+
+    if args.refs_only:
+        fetch_refs(glosses, by_gloss)
+        return
 
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     total = 0

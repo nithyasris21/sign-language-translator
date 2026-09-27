@@ -1,0 +1,14 @@
+  zero           4/4 clips
+  one            8/8 clips
+  two            6/6 clips
+  three          7/7 clips
+  four           5/5 clips
+  five           5/5 clips
+  six            6/6 clips
+  seven          6/6 clips
+  eight          6/6 clips
+  nine           5/5 clips
+  ten            5/5 clips
+
+63 clips across 11 glosses -> D:\sign-language-translator\backend\data\raw
+next: python -m ml.preprocess

@@ -1,0 +1,262 @@
+2026-09-27 11:59:53.826690: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-09-27 11:59:59.718831: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+967 clips over 10 workers
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490644.601099   13796 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490644.622070    8872 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1790490644.792782   27228 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490644.796528   11552 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490644.846478    7668 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490644.857199   26144 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490644.873858   27552 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490644.873872   19100 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490644.910058   22544 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490644.925425    9504 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490644.987847   21068 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490644.988667   23684 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.002815    7172 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.065495    8076 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.230080   22544 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490645.364312   27992 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490645.438598   10612 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.451736    9504 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490645.451667   20800 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.532864   19332 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.546060   26848 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.550451   14896 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.562147   14808 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.674670   14896 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.767805   28996 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490645.829447   32200 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490645.869053   26432 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490645.980959   15100 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.077799   23128 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.109918   28996 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.189251   20800 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.212293   16284 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.235965   22200 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.250548   14664 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.272072   27484 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.273709   19332 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.301406   26848 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.307487    8076 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.326224   14664 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490646.330457   13732 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.346881   14896 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.359346    7172 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.432414   15084 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.461406   32200 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.464995   22708 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490646.547455    6868 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490646.965219    6488 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.147456   26648 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.229576   16284 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.231843   11360 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.233240   12420 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.264564     784 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.321927   13904 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490647.454866    8432 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.551635     784 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.595080   33540 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.613049   20112 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.613858   32440 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.636679   10612 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.664551   27596 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.668568   18852 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.670106    9684 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.682033    6488 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490647.701675   11360 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.722849   27596 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.740873    6976 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.763440    1540 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.773106   30296 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.780481   30296 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.786179   32440 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.810472    9684 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.838646   30384 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.853124    1732 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490647.874169   30384 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.879746   30296 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490647.931219    2324 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.001257    9684 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490648.091676    6976 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.104549   33592 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1790490648.145987   20312 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.186613   10236 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.220905   23664 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.360640   20976 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.418139   10536 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.453260   20976 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.455195   30416 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.488028   31212 landmark_projection_calculator.cc:186] Using NORM_RECT without IMAGE_DIMENSIONS is only supported for the square ROI. Provide IMAGE_DIMENSIONS or use PROJECTION_MATRIX.
+W0000 00:00:1790490648.507935   20976 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.559023   31252 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1790490648.705282   30416 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+  20/967 clips, 160 sequences
+  40/967 clips, 312 sequences
+  60/967 clips, 472 sequences
+  80/967 clips, 632 sequences
+  100/967 clips, 792 sequences
+  120/967 clips, 952 sequences
+  140/967 clips, 1112 sequences
+  160/967 clips, 1272 sequences
+  180/967 clips, 1432 sequences
+  200/967 clips, 1584 sequences
+  220/967 clips, 1736 sequences
+  240/967 clips, 1880 sequences
+  260/967 clips, 2040 sequences
+  280/967 clips, 2192 sequences
+  300/967 clips, 2352 sequences
+  320/967 clips, 2512 sequences
+  340/967 clips, 2672 sequences
+  360/967 clips, 2832 sequences
+  380/967 clips, 2992 sequences
+  400/967 clips, 3144 sequences
+  420/967 clips, 3304 sequences
+  440/967 clips, 3464 sequences
+  460/967 clips, 3616 sequences
+  480/967 clips, 3776 sequences
+  500/967 clips, 3936 sequences
+  520/967 clips, 4096 sequences
+  540/967 clips, 4252 sequences
+  560/967 clips, 4412 sequences
+  580/967 clips, 4564 sequences
+  600/967 clips, 4724 sequences
+  620/967 clips, 4884 sequences
+  640/967 clips, 5032 sequences
+  660/967 clips, 5168 sequences
+  680/967 clips, 5328 sequences
+  700/967 clips, 5480 sequences
+  720/967 clips, 5640 sequences
+  740/967 clips, 5800 sequences
+  760/967 clips, 5960 sequences
+  780/967 clips, 6120 sequences
+  800/967 clips, 6280 sequences
+  820/967 clips, 6440 sequences
+  840/967 clips, 6600 sequences
+  860/967 clips, 6756 sequences
+  880/967 clips, 6900 sequences
+  900/967 clips, 7052 sequences
+  920/967 clips, 7212 sequences
+  940/967 clips, 7364 sequences
+  960/967 clips, 7524 sequences
+  967/967 clips, 7580 sequences
+
+  accident        104 sequences
+  add              72 sequences
+  africa           64 sequences
+  ago              72 sequences
+  alone            72 sequences
+  animal           72 sequences
+  apple            88 sequences
+  appointment      80 sequences
+  argue            80 sequences
+  australia        72 sequences
+  balance          80 sequences
+  ball             72 sequences
+  balloon          72 sequences
+  banana           72 sequences
+  bar              88 sequences
+  barely           72 sequences
+  basketball       96 sequences
+  beard            72 sequences
+  because          80 sequences
+  bed              96 sequences
+  big              72 sequences
+  bird             80 sequences
+  black            56 sequences
+  blanket          80 sequences
+  bowling         104 sequences
+  buy              72 sequences
+  california       72 sequences
+  can              72 sequences
+  candy            96 sequences
+  careful          64 sequences
+  champion         88 sequences
+  change           96 sequences
+  cheat            80 sequences
+  check            88 sequences
+  convince         80 sequences
+  cool            128 sequences
+  corn             96 sequences
+  cousin          104 sequences
+  cry              80 sequences
+  dark             96 sequences
+  delay            88 sequences
+  delicious        80 sequences
+  dog              80 sequences
+  eight            48 sequences
+  environment      88 sequences
+  example          88 sequences
+  far              88 sequences
+  fat              80 sequences
+  fish             80 sequences
+  five             40 sequences
+  four             40 sequences
+  full             80 sequences
+  government       76 sequences
+  graduate         80 sequences
+  interest         80 sequences
+  last             96 sequences
+  laugh            80 sequences
+  leave            88 sequences
+  letter           88 sequences
+  many             80 sequences
+  move             80 sequences
+  nine             40 sequences
+  one              56 sequences
+  orange           52 sequences
+  order            80 sequences
+  perspective      80 sequences
+  pizza            96 sequences
+  play             88 sequences
+  ready            72 sequences
+  room             88 sequences
+  sandwich         80 sequences
+  score            88 sequences
+  secretary        80 sequences
+  seven            48 sequences
+  shirt            96 sequences
+  short           104 sequences
+  silly            80 sequences
+  six              48 sequences
+  snow             80 sequences
+  speech           80 sequences
+  sweet            80 sequences
+  tall            104 sequences
+  tell             76 sequences
+  ten              40 sequences
+  thanksgiving    104 sequences
+  theory           72 sequences
+  thin            120 sequences
+  three            48 sequences
+  thursday         88 sequences
+  toast            80 sequences
+  trade           104 sequences
+  two              48 sequences
+  walk             80 sequences
+  white            80 sequences
+  year             80 sequences
+  zero             32 sequences
+
+7580 sequences written, 39 clip-passes dropped (no hands detected)
+next: python -m ml.train

@@ -81,6 +81,25 @@ Sign → Text works straight after install. Text → Sign needs reference clips 
 | `cd backend && python -m tests.live_test` | model + `data/raw` | real server; held-out clips streamed at 12 fps: latency, accuracy, reset, malformed frames, concurrent clients, disconnects |
 | `cd frontend && npm run test:ui` | model + `data/raw` + Chrome | the React app in Chrome with a clip as fake webcam: both tabs, all controls, error states, production build |
 
+## Pretrained model (default)
+
+Sign → Text uses the 1st-place model of Google's Kaggle
+[ASL Signs](https://www.kaggle.com/competitions/asl-signs) competition,
+from [sign/kaggle-asl-signs-1st-place](https://huggingface.co/sign/kaggle-asl-signs-1st-place)
+(MIT). It recognises 250 everyday signs and was trained on ~94k takes by 21
+signers, so it works on new signers without any recording: 76% top-1 / 91%
+top-5 on WLASL clips of its vocabulary, fed at the live ~5 fps rate.
+
+```bash
+mkdir data\models\islr
+curl -L -o data/models/islr/model.tflite https://huggingface.co/sign/kaggle-asl-signs-1st-place/resolve/main/model.tflite
+curl -L -o data/models/islr/sign_to_prediction_index_map.json https://huggingface.co/sign/kaggle-asl-signs-1st-place/resolve/main/sign_to_prediction_index_map.json
+```
+
+It is used whenever those files exist. Set `SIGN_MODEL=lstm` to use the
+model trained by `ml.train` instead (e.g. for words outside the 250, such as
+numbers).
+
 ## Build your vocabulary
 
 ## Option A — train on WLASL (no webcam needed)

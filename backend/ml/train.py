@@ -6,6 +6,7 @@ Reads data/sequences/<label>/*.npy, writes data/models/sign_lstm.keras and
 labels.json. Architecture is a small stacked LSTM -- with a few hundred
 samples per class anything deeper just overfits.
 """
+import argparse
 import json
 
 import numpy as np
@@ -66,13 +67,28 @@ def build_model(n_classes: int) -> keras.Model:
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--epochs", type=int, default=300)
+    ap.add_argument("--batch-size", type=int, default=16)
+    ap.add_argument("--patience", type=int, default=30, help="early-stopping patience in epochs")
+    args = ap.parse_args()
+
     X, y, labels, groups = load_dataset()
 
     # Group-aware split. Mirrored and time-shifted copies of the same clip are
     # near-duplicates: letting them span the split would report an accuracy
     # that collapses on any genuinely unseen signer.
+    # Signs with a single source clip (text -> sign reference videos) can't be
+    # held out without never being trained on, so they always go to training.
+    clips_per_label = {}
+    for label, group in zip(y, groups):
+        clips_per_label.setdefault(label, set()).add(group)
+    multi = np.array([len(clips_per_label[label]) > 1 for label in y])
     splitter = StratifiedGroupKFold(n_splits=6, shuffle=True, random_state=42)
-    train_idx, test_idx = next(splitter.split(X, y, groups=groups))
+    multi_idx = np.flatnonzero(multi)
+    tr, test_idx = next(splitter.split(X[multi_idx], y[multi_idx], groups=groups[multi_idx]))
+    train_idx = np.concatenate([multi_idx[tr], np.flatnonzero(~multi)])
+    test_idx = multi_idx[test_idx]
     X_train, X_test = X[train_idx], X[test_idx]
     y_train, y_test = y[train_idx], y[test_idx]
     print(f"{len(X_train)} train / {len(X_test)} held-out "
@@ -83,11 +99,11 @@ def main():
     model.fit(
         X_train, y_train,
         validation_data=(X_test, y_test),
-        epochs=300,
-        batch_size=16,
+        epochs=args.epochs,
+        batch_size=args.batch_size,
         callbacks=[
-            keras.callbacks.EarlyStopping(monitor="val_loss", patience=30, restore_best_weights=True),
-            keras.callbacks.ReduceLROnPlateau(monitor="val_loss", patience=12, factor=0.5, min_lr=1e-5),
+            keras.callbacks.EarlyStopping(monitor="val_loss", patience=args.patience, restore_best_weights=True),
+            keras.callbacks.ReduceLROnPlateau(monitor="val_loss", patience=max(3, args.patience // 3), factor=0.5, min_lr=1e-5),
         ],
     )
 

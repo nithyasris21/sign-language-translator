@@ -9,8 +9,15 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from app import library
-from config import CONFIDENCE_THRESHOLD, SEQUENCE_LENGTH, SIGN_DIR
-from ml.landmarks import decode_data_url, detect, extract_keypoints, has_hands, make_holistic
+from config import CONFIDENCE_THRESHOLD, SIGN_DIR
+from ml.landmarks import (
+    decode_data_url,
+    detect,
+    extract_keypoints,
+    extract_raw543,
+    has_hands,
+    make_holistic,
+)
 from ml.predict import FrameBuffer, recognizer
 
 app = FastAPI(title="Sign Language Translator")
@@ -42,7 +49,8 @@ def health():
         "status": "ok",
         "model_trained": recognizer.ready,
         "signs": recognizer.labels,
-        "sequence_length": SEQUENCE_LENGTH,
+        "model": recognizer.kind,
+        "sequence_length": recognizer.sequence_length,
         "confidence_threshold": CONFIDENCE_THRESHOLD,
     }
 
@@ -69,8 +77,9 @@ async def recognize(ws: WebSocket):
     its own instance and its own rolling window.
     """
     await ws.accept()
-    buffer = FrameBuffer()
+    buffer = FrameBuffer(recognizer.window_seconds, recognizer.sequence_length)
     holistic = make_holistic()
+    extract = extract_raw543 if recognizer.kind == "islr" else extract_keypoints
 
     def process(data_url: str, t: float) -> dict | None:
         """CPU-bound: runs in a worker thread so the event loop stays free."""
@@ -78,10 +87,10 @@ async def recognize(ws: WebSocket):
         if frame is None:
             return None
         results = detect(frame, holistic)
-        window = buffer.push(extract_keypoints(results), t)
+        window = buffer.push(extract(results), t)
         hands = has_hands(results)
         if window is None:
-            return {"type": "buffering", "filled": buffer.filled, "needed": SEQUENCE_LENGTH, "hands": hands}
+            return {"type": "buffering", "filled": buffer.filled, "needed": buffer.sequence_length, "hands": hands}
         label, confidence, scores = recognizer.predict(window)
         return {
             "type": "prediction",
